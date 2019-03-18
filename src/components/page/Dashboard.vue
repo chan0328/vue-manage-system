@@ -106,7 +106,7 @@
 
 <script>
     import Schart from 'vue-schart';
-    import bus from '../common/bus';
+    import bus from '../../jslib/bus';
     export default {
         name: 'dashboard',
         data() {
@@ -192,6 +192,8 @@
             }
         },
         created(){
+            // console.log(process.env.BASE_URL,'url')
+            // this.$store.dispatch('goods/toGetGoods')
             this.handleListener();
             this.changeDate();
         },
