@@ -1,14 +1,23 @@
-import * as NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
-
-
-import router from './index'
 import Vue from "vue";
-
+import router from './index';
+import 'nprogress/nprogress.css';
+import * as NProgress from 'nprogress';
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
-    NProgress.start()
+    NProgress.start();
+
+    // if (to.path === '/login') {
+    //     next();
+    // } else {
+    //     const token = sessionStorage.getItem('token');
+    //     if (!token||token==null) {
+    //         next('/login');
+    //     } else {
+    //         next();
+    //     }
+    // }
+
     const role = localStorage.getItem('ms_username');
     if (!role && to.path !== '/login') {
         next('/login');
@@ -27,7 +36,6 @@ router.beforeEach((to, from, next) => {
     }
     NProgress.done();
 })
-
 
 router.afterEach(() => {
     NProgress.done() // finish progress bar
